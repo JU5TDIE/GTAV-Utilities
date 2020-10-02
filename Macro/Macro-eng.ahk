@@ -8,17 +8,15 @@ Gui, Add, Text, x22 y6 w175 h30 +Center vDetected cDF0101, GTA5 OFF
 Gui, Add, Checkbox, gC1 vC1, CEO
 Gui, Add, Checkbox, gC2 vC2, MC Club
 Gui, Add, Checkbox, gC3 vC3, Default
-Gui, Add, Checkbox, vC4, Chat Cleaning(4)
-Gui, Add, Checkbox, vC5, Tryhard Mode
-Gui, Add, Checkbox, vC6, Heist Setting 
-Gui, Add, Button,x10 y200 w90 h30 vSolo, Solo-Session
+Gui, Add, Checkbox, vC4, Heist Setting 
+Gui, Add, Button,x10 y160 w90 h30 vSolo, Solo-Session
 GuiControl, disable, Solo
-Gui, Add, Button,x120 y165 w90 h30 vInternet, Lan-Off
+Gui, Add, Button,x110 y125 w90 h30 vInternet, Lan-Release
 GuiControl, disable, Internet
-Gui, Add, Button,x10 y165 w90 h30 vsd, ShutDown
+Gui, Add, Button,x10 y125 w90 h30 vsd, ShutDown
 GuiControl, disable, sd
-Gui, Add, Button,x120 y200 w90 h30, Manual
-Gui, Show, w220 h250, GTA
+Gui, Add, Button,x110 y160 w90 h30, Manual
+Gui, Show, w210 h210, GTA
 ProcessExist(Name){
 Process,Exist,%Name%
 return Errorlevel
@@ -283,18 +281,7 @@ F1::
 Gui, Submit, NoHide
 if(C4=1)
 {
-Send,t
-Send,{space}
-Send,{enter}
-Send,t
-Send,{space}
-Send,{enter}
-Send,t
-Send,{space}
-Send,{enter}
-Send,t
-Send,{space}
-Send,{enter}
+Send {Enter}{Right}{Enter}{Down}{Enter}{Right}{Enter}{Down}{Enter}{Left}{Enter}
 }else
 return
 }
@@ -303,9 +290,9 @@ return
 F2::
 {
 Gui, Submit, NoHide
-if(C6=1)
+if(C4=1)
 {
-Send {Enter}{Right}{Enter}{Down}{Enter}{Right}{Enter}{Down}{Enter}{Left}{Enter}
+Send {Enter}{Right}{Enter}{Down}{Enter}{Right}{Enter}{Left}{Enter}{Right}{Enter}{Down}{Enter}{Left}{Enter}
 }else
 return
 }
@@ -314,9 +301,9 @@ return
 F3::
 {
 Gui, Submit, NoHide
-if(C6=1)
+if(C4=1)
 {
-Send {Enter}{Right}{Enter}{Down}{Enter}{Right}{Enter}{Left}{Enter}{Right}{Enter}{Down}{Enter}{Left}{Enter}
+Send {Enter}{Left}{Enter}{Down}{Enter}{Right}{Enter}{Down}{Enter}{Left}{Enter}
 }else
 return
 }
@@ -325,18 +312,7 @@ return
 F4::
 {
 Gui, Submit, NoHide
-if(C6=1)
-{
-Send {Enter}{Left}{Enter}{Down}{Enter}{Right}{Enter}{Down}{Enter}{Left}{Enter}
-}else
-return
-}
-return
-
-F5::
-{
-Gui, Submit, NoHide
-if(C6=1)
+if(C4=1)
 {
 Send {Up}{Enter}
 Sleep 300
@@ -365,7 +341,7 @@ return
 ctrl & t::
 {
 Gui, Submit, NoHide
-if(C5=1)
+if(C1=1)
 {
 Send, m
 Send {Enter}{Down}{Down}{Down}{Down}{Enter}{Down}{Enter}
@@ -377,7 +353,7 @@ return
 ctrl & b::
 {
 Gui, Submit, NoHide
-if(C5=1)
+if(C1=1)
 {
 Send, m
 Send {Enter}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Down}{Down}{Enter}
@@ -389,7 +365,7 @@ return
 ctrl & v::
 {
 Gui, Submit, NoHide
-if(C5=1)
+if(C1=1)
 {
 Send, m
 Send {Enter}{Down}{Down}{Enter}
@@ -401,7 +377,7 @@ return
 ctrl & g::
 {
 Gui, Submit, NoHide
-if(C5=1)
+if(C1=1)
 {
 Send, m
 Send {Enter}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Down}{Enter}
@@ -415,13 +391,11 @@ Gui, submit
 Msgbox,
 (
 ==============================================
-F1 = Chatting Macro
-
 Heist Setting Macro
-F2 = Silent & Sneaky
-F3 = Big Con
-F4 = Aggressive
-F5 = Old, Facility Heist
+F1 = Silent & Sneaky
+F2 = Big Con
+F3 = Aggressive
+F4 = Old, Facility Heist
 
 Default Macro
 Ctrl & 1 = Snack
@@ -430,7 +404,7 @@ Ctrl & 3 = Ammos
 Ctrl & 4 = Next Gun Ammos
 Ctrl & 5 = CEO, MC club invite
 
-Tryhard Mode
+CEO
 Ctrl & t = Bullshark
 Ctrl & v = VIP Mission
 Ctrl & b = Bribe Authorities

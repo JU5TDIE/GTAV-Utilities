@@ -8,17 +8,15 @@ Gui, Add, Text, x22 y6 w175 h30 +Center v감지기 cDF0101, GTA5 OFF
 Gui, Add, Checkbox, gC1 vC1, CEO
 Gui, Add, Checkbox, gC2 vC2, MC클럽
 Gui, Add, Checkbox, gC3 vC3, 기본
-Gui, Add, Checkbox, vC4, 채팅 클리닝(4)
-Gui, Add, Checkbox, vC5, 쟁질모드
-Gui, Add, Checkbox, vC6, 습격 세팅 매크로
-Gui, Add, Button,x10 y200 w90 h30 v1인, 1인세션
+Gui, Add, Checkbox, vC4, 습격 세팅 매크로
+Gui, Add, Button,x10 y160 w90 h30 v1인, 1인세션
 GuiControl, disable, 1인
-Gui, Add, Button,x120 y165 w90 h30 v인터넷, 랜뽑
+Gui, Add, Button,x110 y125 w90 h30 v인터넷, 랜뽑
 GuiControl, disable, 인터넷
-Gui, Add, Button,x10 y165 w90 h30 v강종, 강제종료
+Gui, Add, Button,x10 y125 w90 h30 v강종, 강제종료
 GuiControl, disable, 강종
-Gui, Add, Button,x120 y200 w90 h30, 설명서
-Gui, Show, w220 h250, GTA
+Gui, Add, Button,x110 y160 w90 h30, 설명서
+Gui, Show, w210 h210, GTA
 ProcessExist(Name){
 Process,Exist,%Name%
 return Errorlevel
@@ -283,18 +281,7 @@ F1::
 Gui, Submit, NoHide
 if(C4=1)
 {
-Send,t
-Send,{space}
-Send,{enter}
-Send,t
-Send,{space}
-Send,{enter}
-Send,t
-Send,{space}
-Send,{enter}
-Send,t
-Send,{space}
-Send,{enter}
+Send {Enter}{Right}{Enter}{Down}{Enter}{Right}{Enter}{Down}{Enter}{Left}{Enter}
 }else
 return
 }
@@ -303,9 +290,9 @@ return
 F2::
 {
 Gui, Submit, NoHide
-if(C6=1)
+if(C4=1)
 {
-Send {Enter}{Right}{Enter}{Down}{Enter}{Right}{Enter}{Down}{Enter}{Left}{Enter}
+Send {Enter}{Right}{Enter}{Down}{Enter}{Right}{Enter}{Left}{Enter}{Right}{Enter}{Down}{Enter}{Left}{Enter}
 }else
 return
 }
@@ -314,9 +301,9 @@ return
 F3::
 {
 Gui, Submit, NoHide
-if(C6=1)
+if(C4=1)
 {
-Send {Enter}{Right}{Enter}{Down}{Enter}{Right}{Enter}{Left}{Enter}{Right}{Enter}{Down}{Enter}{Left}{Enter}
+Send {Enter}{Left}{Enter}{Down}{Enter}{Right}{Enter}{Down}{Enter}{Left}{Enter}
 }else
 return
 }
@@ -325,18 +312,7 @@ return
 F4::
 {
 Gui, Submit, NoHide
-if(C6=1)
-{
-Send {Enter}{Left}{Enter}{Down}{Enter}{Right}{Enter}{Down}{Enter}{Left}{Enter}
-}else
-return
-}
-return
-
-F5::
-{
-Gui, Submit, NoHide
-if(C6=1)
+if(C4=1)
 {
 Send {Up}{Enter}
 Sleep 300
@@ -365,7 +341,7 @@ return
 ctrl & t::
 {
 Gui, Submit, NoHide
-if(C5=1)
+if(C1=1)
 {
 Send, m
 Send {Enter}{Down}{Down}{Down}{Down}{Enter}{Down}{Enter}
@@ -377,7 +353,7 @@ return
 ctrl & b::
 {
 Gui, Submit, NoHide
-if(C5=1)
+if(C1=1)
 {
 Send, m
 Send {Enter}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Down}{Down}{Enter}
@@ -389,7 +365,7 @@ return
 ctrl & v::
 {
 Gui, Submit, NoHide
-if(C5=1)
+if(C1=1)
 {
 Send, m
 Send {Enter}{Down}{Down}{Enter}
@@ -401,7 +377,7 @@ return
 ctrl & g::
 {
 Gui, Submit, NoHide
-if(C5=1)
+if(C1=1)
 {
 Send, m
 Send {Enter}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Down}{Enter}
@@ -415,13 +391,11 @@ Gui, submit
 Msgbox,
 (
 ==============================================
-F1 = 채팅 매크로
-
 습격 세팅 매크로
-F2 = 카지노 습격 비밀작전
-F3 = 카지노 습격 대사기극
-F4 = 카지노 습격 공격전술
-F5 = 구,신습격 세팅
+F1 = 카지노 습격 비밀작전
+F2 = 카지노 습격 대사기극
+F3 = 카지노 습격 공격전술
+F4 = 구,신습격 세팅
 
 일반 매크로
 Ctrl & 1 = 스낵
@@ -430,7 +404,7 @@ Ctrl & 3 = 탄약
 Ctrl & 4 = 중화기 다른 탄약 구매 매크로
 Ctrl & 5 = CEO, MC클럽 초대 매크로 
 
-쟁질모드
+CEO
 Ctrl & t = 불샤크 테스트론
 Ctrl & v = VIP 임무 매크로
 Ctrl & b = 관계자 매수 매크로

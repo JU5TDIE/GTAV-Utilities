@@ -9,9 +9,9 @@ Gui, Add, Checkbox, gC1 vC1, CEO
 Gui, Add, Checkbox, gC2 vC2, MC Club
 Gui, Add, Checkbox, gC3 vC3, Default
 Gui, Add, Checkbox, vC4, Heist Setting 
-Gui, Add, Button,x10 y160 w90 h30 vSolo, Solo-Session
+Gui, Add, Button,x10 y160 w90 h30 vSolo, SoloSession
 GuiControl, disable, Solo
-Gui, Add, Button,x110 y125 w90 h30 vInternet, Lan-Release
+Gui, Add, Button,x110 y125 w90 h30 vInternet, Lan-OFF
 GuiControl, disable, Internet
 Gui, Add, Button,x10 y125 w90 h30 vsd, ShutDown
 GuiControl, disable, sd
@@ -49,9 +49,9 @@ GuiControl,, Detected,GTA5 ON
 Gui, Font, c2EFE2E
 GuiControl, Font, Detected
 GuiControl, enable, Solo
-GuiControl,, Solo, Solo-Session
+GuiControl,, Solo, SoloSession
 GuiControl, enable, Internet
-GuiControl,, Internet, Lan-Off
+GuiControl,, Internet, Lan-OFF
 GuiControl, enable, sd
 GuiControl,, sd, ShutDown
 GTAOK := 1
@@ -62,7 +62,7 @@ sleep, 3000
 }
 return
 
-ButtonSolo-Session:
+ButtonSoloSession:
 If not ProcessExist("GTA5.exe")
 {
 GuiControl,, Detected, GTA5 OFF
@@ -85,7 +85,7 @@ sleep, 5000
 goto, CheckLevel
 return
 
-ButtonLan-Off:
+ButtonLan-OFF:
 If not ProcessExist("GTA5.exe")
 {
 GuiControl,, Detected, GTA5 OFF
@@ -98,7 +98,7 @@ GuiControl, disable, Internet
 Run, %ComSpec% /c ipconfig /release
 InternetSus_Time := 20
 Loop, 20{
-GuiControl,, Internet, %InternetSus_Time%√ 
+GuiControl,, Internet, %InternetSus_Time% Seconds
 sleep, 1000
 --InternetSus_Time
 }

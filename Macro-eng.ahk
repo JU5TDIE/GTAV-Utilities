@@ -1,6 +1,5 @@
 ; <COMPILER: v1.1.30.03>
 #NoEnv
-#NoTrayIcon
 #SingleInstance Ignore
 #IfWinActive ahk_class grcWindow
 

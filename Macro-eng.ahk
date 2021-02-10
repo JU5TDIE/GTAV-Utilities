@@ -3,6 +3,59 @@
 #SingleInstance Ignore
 #IfWinActive ahk_class grcWindow
 
+IniRead, sk, settings.ini, Controls, Snack
+IniRead, ar, settings.ini, Controls, Armor
+IniRead, ao, settings.ini, Controls, Ammo
+IniRead, na, settings.ini, Controls, NextAmmo
+IniRead, hrj, settings.ini, Controls, HideRevealJobs
+IniRead, cwl, settings.ini, Controls, CustomWeaponLoadout
+IniRead, rm, settings.ini, Controls, RequestMOC
+IniRead, ra, settings.ini, Controls, RequestAvenger
+IniRead, rt, settings.ini, Controls, RequestTerrorbyte
+IniRead, rk, settings.ini, Controls, RequestKosatka
+IniRead, pmw, settings.ini, Controls, PinMacroWindow
+IniRead, ss, settings.ini, Controls, SilentSneaky
+IniRead, tb, settings.ini, Controls, TheBigcon 
+IniRead, ae, settings.ini, Controls, Aggressive
+IniRead, ofh, settings.ini, Controls, OldFacilityHeist
+IniRead, bst, settings.ini, Controls, Bullshark
+IniRead, ba, settings.ini, Controls, BribeAuthorities
+IniRead, vip, settings.ini, Controls, VIP
+IniRead, go, settings.ini, Controls, GhostOrganization 
+IniRead, rbzz, settings.ini, Controls, RequestBuzzard
+IniRead, rb, settings.ini, Controls, RequestBike
+IniRead, pe, settings.ini, Controls, Passive
+IniRead, invf, settings.ini, Controls, InviteFriends
+IniRead, sn, settings.ini, Controls, ShutDown
+IniRead, ssn, settings.ini, Controls, SoloSession
+IniRead, lf, settings.ini, Controls, LAN-OFF
+Hotkey, %sk%,Snack,On
+Hotkey, %ar%,Armor,On
+Hotkey, %ao%,Ammo,On
+Hotkey, %na%,NextAmmo,On
+Hotkey, %hrj%,HideRevealJobs,On
+Hotkey, %cwl%,CustomWeaponLoadout,On
+Hotkey, %rm%,RequestMOC,On
+Hotkey, %ra%,RequestAvenger,On
+Hotkey, %rt%,RequestTerrorbyte,On
+Hotkey, %rk%,RequestKosatka,On
+Hotkey, %pmw%,PinMacroWindow,On
+Hotkey, %ss%,SilentSneaky,On
+Hotkey, %tb%,TheBigcon,On
+Hotkey, %ae%,Aggressive,On
+Hotkey, %ofh%,OldFacilityHeist,On
+Hotkey, %bst%,Bullshark,On
+Hotkey, %ba%,BribeAuthorities,On
+Hotkey, %vip%,VIP,On
+Hotkey, %go%,GhostOrganization ,On
+Hotkey, %rbzz%,RequestBuzzard,On
+Hotkey, %rb%,RequestBike,On
+Hotkey, %pe%,Passive,On
+Hotkey, %invf%,InviteFriends,On
+Hotkey, %sn%,ButtonShutDown,On
+Hotkey, %ssn%,ButtonSoloSession,On
+Hotkey, %lf%,ButtonLan-OFF,On
+
 Gui, Font, bold
 Gui, Add, Text, x22 y6 w175 h30 +CEnter vDetected cDF0101, GTA5 OFF
 Gui, Add, Button,x10 y75 w90 h30 vSolo, SoloSession
@@ -58,6 +111,7 @@ break
 sleep, 3000
 }
 return
+
 
 ButtonSoloSession:
 If not ProcessExist("GTA5.exe")

@@ -3,20 +3,18 @@
 #NoTrayIcon
 #SingleInstance Ignore
 #IfWinActive ahk_class grcWindow
+
 Gui, Font, bold
-Gui, Add, Text, x22 y6 w175 h30 +Center vDetected cDF0101, GTA5 OFF
-Gui, Add, Checkbox, gC1 vC1, CEO
-Gui, Add, Checkbox, gC2 vC2, MC Club
-Gui, Add, Checkbox, gC3 vC3, Default
-Gui, Add, Checkbox, vC4, Heist Setting 
-Gui, Add, Button,x10 y160 w90 h30 vSolo, SoloSession
+Gui, Add, Text, x22 y6 w175 h30 +CEnter vDetected cDF0101, GTA5 OFF
+Gui, Add, Button,x10 y75 w90 h30 vSolo, SoloSession
 GuiControl, disable, Solo
-Gui, Add, Button,x110 y125 w90 h30 vInternet, Lan-OFF
+Gui, Add, Button,x110 y40 w90 h30 vInternet, Lan-OFF
 GuiControl, disable, Internet
-Gui, Add, Button,x10 y125 w90 h30 vsd, ShutDown
+Gui, Add, Button,x10 y40 w90 h30 vsd, ShutDown
 GuiControl, disable, sd
-Gui, Add, Button,x110 y160 w90 h30, Manual
-Gui, Show, w210 h210, GTA
+Gui, Add, Button,x110 y75 w90 h30, Credits
+Gui, Show, w210 h120, GTA
+
 ProcessExist(Name){
 Process,Exist,%Name%
 return Errorlevel
@@ -121,45 +119,16 @@ process,close,GTA5.exe
 goto, CheckLevel
 return
 
-C1:
-gui, submit, nohide
-if (C2 = 1)
-{
-guicontrol,,C2,0
+ButtonCredits:
+Gui, submit
+Msgbox,
+(
+https://github.com/JU5TDIE/GTAV-Macro
+)
+Gui,Show
 return
-}
-if (C3 = 1)
-{
-guicontrol,,C3,0
-return
-}
 
 
-C2:
-gui, submit, nohide
-if (C1 = 1)
-{
-guicontrol,,C1,0
-return
-}
-if (C3 = 1)
-{
-guicontrol,,C3,0
-return
-}
-
-C3:
-gui, submit, nohide
-if (C1 = 1)
-{
-guicontrol,,C1,0
-return
-}
-if (C2 = 1)
-{
-guicontrol,,C2,0
-return
-}
 
 ctrl & 1::
 {
@@ -386,33 +355,6 @@ return
 }
 return
 
-ButtonManual:
-Gui, submit
-Msgbox,
-(
-==============================================
-Heist Setting Macro
-F1 = Silent & Sneaky
-F2 = Big Con
-F3 = Aggressive
-F4 = Old, Facility Heist
-
-Default Macro
-Ctrl & 1 = Snack
-Ctrl & 2 = Body Armor
-Ctrl & 3 = Ammos
-Ctrl & 4 = Next Gun Ammos
-Ctrl & 5 = CEO, MC club invite
-
-CEO
-Ctrl & t = Bullshark
-Ctrl & v = VIP Mission
-Ctrl & b = Bribe Authorities
-Ctrl & g = Ghost-Org
-==============================================
-)
-Gui,Show
-return
 
 
 GuiClose:

@@ -129,6 +129,7 @@ return
 
 
 
+; Default Macros
 Snack:
 Send, m
 Sleep 70
@@ -165,6 +166,71 @@ return
 NextAmmo:
 Send {Up}{Up}{Enter}{Down}{Down}{Enter}
 
+HideRevealJobs:
+Send, m
+Send {Up}{Up}{Up}{Up}{Up}{Up}{Up}{Up}{Enter}{Enter}{Enter}{Esc}{Esc}{Esc}
+return
+
+CustomWeaponLoadout:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/quickgps-eng.png
+If (Errorlevel = 0)
+{
+Send {Down}{Down}{Enter}{Down}{Down}{Down}{Down}{Enter}{Esc}{Esc}
+}else
+Send {Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Down}{Enter}{Esc}{Esc}
+return
+
+RequestMOC:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/quickgps-eng.png
+If (Errorlevel = 0)
+{
+Send {Down}{Down}{Down}{Down}{Down}{Enter}{Down}{Enter}{Enter}
+}else
+Send {Down}{Down}{Down}{Down}{Down}{Down}{Enter}{Down}{Enter}{Enter}
+return
+
+RequestAvenger:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/quickgps-eng.png
+If (Errorlevel = 0)
+{
+Send {Down}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Enter}{Enter}
+}else
+Send {Down}{Down}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Enter}{Enter}
+return
+
+RequestTerrorbyte:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/quickgps-eng.png
+If (Errorlevel = 0)
+{
+Send {Down}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Enter}{Enter}
+}else
+Send {Down}{Down}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Enter}{Enter}
+return
+
+RequestKosatka:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/quickgps-eng.png
+If (Errorlevel = 0)
+{
+Send {Down}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Down}{Enter}{Enter}
+}else
+Send {Down}{Down}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Down}{Enter}{Enter}
+return
+
+PinMacroWindow:
+WinSet,AlwaysOnTop,On,ahk_class AutoHotkeyGUI
+
+
+; Heist Setting Macros
 SilentSneaky:
 Send {Enter}{Right}{Enter}{Down}{Enter}{Right}{Enter}{Down}{Enter}{Left}{Enter}
 return
@@ -199,6 +265,8 @@ Sleep 100
 Send {Enter}
 return
 
+
+; CEO Macros
 Bullshark:
 Send, m
 Sleep 70
@@ -242,6 +310,70 @@ Send {Enter}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Down}
 }else
 Send, m
 return
+
+RequestBuzzard:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/ceo-eng.png
+If (Errorlevel = 0)
+{
+Send {Enter}{Up}{Up}{Enter}{Down}{Down}{Down}{Down}{Enter}
+}else
+Send, m
+return
+
+
+; MC Club Macros
+RequestBike:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/mcclub-eng.png
+If (Errorlevel = 0)
+{
+Send {Enter}{Enter}
+}else
+Send, m
+return
+
+
+; CEO + MC Macros
+Passive:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/quickgps-eng.png
+If (Errorlevel = 0)
+{
+Send {Up}{Enter}{Esc}
+}else
+Send {Enter}{Up}{Enter}
+Sleep 300
+Send, m
+Send {Up}{Enter}{Esc}
+return
+
+InviteFriends:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/ceo-eng.png
+If (Errorlevel = 0)
+{
+    Send {Enter}{Enter}{Right}{Right}{Enter}{Esc}{Esc}{Esc}
+    return
+}
+If (Errorlevel = 1)
+{
+    ImageSearch,vx,vy,25,137,460,190, *50 pics/mcclub-eng.png
+    If (Errorlevel = 0)
+    {
+        Send {Enter}{Down}{Enter}{Right}{Right}{Enter}{Esc}{Esc}{Esc}
+        return
+    }
+    If (Errorlevel = 1)
+    {
+        Send, m
+        return
+    }
+}
 
 
 

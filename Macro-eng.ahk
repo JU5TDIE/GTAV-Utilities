@@ -129,159 +129,55 @@ return
 
 
 
-ctrl & 1::
+Snack:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/quickgps-eng.png
+If (Errorlevel = 0)
 {
-Gui, Submit, NoHide
-if (C1 = 1)
-{
-Send,m
-Send {Down}{Down}{Down}{enter}{Down}{Down}{enter}{Down}
-return
-}
-if (C2 = 1)
-{
-Send,m
-Send {Down}{Down}{Down}{enter}{Down}{Down}{enter}{Down}
-return
-}
-if (C3 = 1)
-{
-Send,m
-Send {Down}{Down}{enter}{Down}{Down}{enter}{Down}
-return
-}
-}
+Send {Down}{Down}{Enter}{Down}{Down}{Enter}{Down}
+}else
+Send {Down}{Down}{Down}{Enter}{Down}{Down}{Enter}{Down}
 return
 
-ctrl & 2::
+Armor:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/quickgps-eng.png
+If (Errorlevel = 0)
 {
-Gui, Submit, NoHide
-if (C1 = 1)
-{
-Send,m
-Send {Down}{Down}{Down}{enter}{Down}{enter}{Down}{Down}{Down}{Down}{enter}{esc}{esc}{esc}
-return
-}
-if (C2 = 1)
-{
-Send,m
-Send {Down}{Down}{Down}{enter}{Down}{enter}{Down}{Down}{Down}{Down}{enter}{esc}{esc}{esc}
-return
-}
-if (C3 = 1)
-{
-Send,m
-Send {Down}{Down}{enter}{Down}{enter}{Down}{Down}{Down}{Down}{enter}{esc}{esc}{esc}
-return
-}
-}
+Send {Down}{Down}{Enter}{Down}{Enter}{Down}{Down}{Down}{Down}{Enter}{Esc}{Esc}{Esc}
+}else
+Send {Down}{Down}{Down}{Enter}{Down}{Enter}{Down}{Down}{Down}{Down}{Enter}{Esc}{Esc}{Esc}
 return
 
-ctrl & 3::
+Ammo:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/quickgps-eng.png
+If (Errorlevel = 0)
 {
-Gui, Submit, NoHide
-if (C1 = 1)
-{
-Send,m
-Send {Down}{Down}{Down}{enter}{Down}{Down}{Down}{enter}{Down}{Down}{Down}{enter}
-return
-}
-if (C2 = 1)
-{
-Send,m
-Send {Down}{Down}{Down}{enter}{Down}{Down}{Down}{enter}{Down}{Down}{Down}{enter}
-return
-}
-if (C3 = 1)
-{
-Send,m
-Send {Down}{Down}{enter}{Down}{Down}{Down}{enter}{Down}{Down}{Down}{enter}
-return
-}
-}
+Send {Down}{Down}{Enter}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Enter}
+}else
+Send {Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Enter}
 return
 
-ctrl & 4::
-{
-Gui, Submit, NoHide
-if (C1 = 1)
-{
-Send {Up}{Up}{enter}{Down}{Down}{enter}
-return
-}
-if (C2 = 1)
-{
-Send {Up}{Up}{enter}{Down}{Down}{enter}
-return
-}
-if (C3 = 1)
-{
-Send {Up}{Up}{enter}{Down}{Down}{enter}
-return
-}
-}
-return
+NextAmmo:
+Send {Up}{Up}{Enter}{Down}{Down}{Enter}
 
-ctrl & 5::
-{
-Gui, Submit, NoHide
-if (C1 = 1)
-{
-Send,m
-Send {enter}{enter}
-Sleep 100
-Send {Right}{Right}{enter}{esc}{esc}{esc}
-return
-}
-if (C2 = 1)
-{
-Send,m
-Send {enter}{Down}{enter}
-Sleep 100
-Send {Right}{Right}{enter}{esc}{esc}{esc}
-return
-}
-}
-return
-
-F1::
-{
-Gui, Submit, NoHide
-if(C4=1)
-{
+SilentSneaky:
 Send {Enter}{Right}{Enter}{Down}{Enter}{Right}{Enter}{Down}{Enter}{Left}{Enter}
-}else
-return
-}
 return
 
-F2::
-{
-Gui, Submit, NoHide
-if(C4=1)
-{
+TheBigCon:
 Send {Enter}{Right}{Enter}{Down}{Enter}{Right}{Enter}{Left}{Enter}{Right}{Enter}{Down}{Enter}{Left}{Enter}
-}else
-return
-}
 return
 
-F3::
-{
-Gui, Submit, NoHide
-if(C4=1)
-{
+Aggressive:
 Send {Enter}{Left}{Enter}{Down}{Enter}{Right}{Enter}{Down}{Enter}{Left}{Enter}
-}else
-return
-}
 return
 
-F4::
-{
-Gui, Submit, NoHide
-if(C4=1)
-{
+OldFacilityHeist:
 Send {Up}{Enter}
 Sleep 300
 Send {Down}{Down}{Down}
@@ -301,57 +197,50 @@ Sleep 1100
 Send {Down}
 Sleep 100
 Send {Enter}
-}else
-return
-}
 return
 
-ctrl & t::
-{
-Gui, Submit, NoHide
-if(C1=1)
-{
+Bullshark:
 Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/ceo-eng.png
+If (Errorlevel = 0)
+{
 Send {Enter}{Down}{Down}{Down}{Down}{Enter}{Down}{Enter}
 }else
-return
-}
+Send, m
 return
 
-ctrl & b::
-{
-Gui, Submit, NoHide
-if(C1=1)
-{
+BribeAuthorities:
 Send, m
-Send {Enter}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Down}{Down}{Enter}
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/ceo-eng.png
+If (Errorlevel = 0)
+{
+Send {Enter}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Down}{Down}
 }else
-return
-}
+Send, m
 return
 
-ctrl & v::
-{
-Gui, Submit, NoHide
-if(C1=1)
-{
+VIP:
 Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/ceo-eng.png
+If (Errorlevel = 0)
+{
 Send {Enter}{Down}{Down}{Enter}
 }else
-return
-}
+Send, m
 return
 
-ctrl & g::
-{
-Gui, Submit, NoHide
-if(C1=1)
-{
+GhostOrganization:
 Send, m
-Send {Enter}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Down}{Enter}
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/ceo-eng.png
+If (Errorlevel = 0)
+{
+Send {Enter}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Down}
 }else
-return
-}
+Send, m
 return
 
 

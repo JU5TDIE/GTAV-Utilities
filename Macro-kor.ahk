@@ -1,22 +1,72 @@
 ; <COMPILER: v1.1.30.03>
 #NoEnv
-#NoTrayIcon
 #SingleInstance Ignore
 #IfWinActive ahk_class grcWindow
+
+IniRead, sk, settings.ini, Controls, Snack
+IniRead, ar, settings.ini, Controls, Armor
+IniRead, ao, settings.ini, Controls, Ammo
+IniRead, na, settings.ini, Controls, NextAmmo
+IniRead, hrj, settings.ini, Controls, HideRevealJobs
+IniRead, cwl, settings.ini, Controls, CustomWeaponLoadout
+IniRead, rm, settings.ini, Controls, RequestMOC
+IniRead, ra, settings.ini, Controls, RequestAvenger
+IniRead, rt, settings.ini, Controls, RequestTerrorbyte
+IniRead, rk, settings.ini, Controls, RequestKosatka
+IniRead, pmw, settings.ini, Controls, PinMacroWindow
+IniRead, ss, settings.ini, Controls, SilentSneaky
+IniRead, tb, settings.ini, Controls, TheBigcon 
+IniRead, ae, settings.ini, Controls, Aggressive
+IniRead, ofh, settings.ini, Controls, OldFacilityHeist
+IniRead, bst, settings.ini, Controls, Bullshark
+IniRead, ba, settings.ini, Controls, BribeAuthorities
+IniRead, vip, settings.ini, Controls, VIP
+IniRead, go, settings.ini, Controls, GhostOrganization 
+IniRead, rbzz, settings.ini, Controls, RequestBuzzard
+IniRead, rb, settings.ini, Controls, RequestBike
+IniRead, pe, settings.ini, Controls, Passive
+IniRead, invf, settings.ini, Controls, InviteFriends
+IniRead, sn, settings.ini, Controls, ShutDown
+IniRead, ssn, settings.ini, Controls, SoloSession
+IniRead, lf, settings.ini, Controls, LAN-OFF
+Hotkey, %sk%,Snack,On
+Hotkey, %ar%,Armor,On
+Hotkey, %ao%,Ammo,On
+Hotkey, %na%,NextAmmo,On
+Hotkey, %hrj%,HideRevealJobs,On
+Hotkey, %cwl%,CustomWeaponLoadout,On
+Hotkey, %rm%,RequestMOC,On
+Hotkey, %ra%,RequestAvenger,On
+Hotkey, %rt%,RequestTerrorbyte,On
+Hotkey, %rk%,RequestKosatka,On
+Hotkey, %pmw%,PinMacroWindow,On
+Hotkey, %ss%,SilentSneaky,On
+Hotkey, %tb%,TheBigcon,On
+Hotkey, %ae%,Aggressive,On
+Hotkey, %ofh%,OldFacilityHeist,On
+Hotkey, %bst%,Bullshark,On
+Hotkey, %ba%,BribeAuthorities,On
+Hotkey, %vip%,VIP,On
+Hotkey, %go%,GhostOrganization ,On
+Hotkey, %rbzz%,RequestBuzzard,On
+Hotkey, %rb%,RequestBike,On
+Hotkey, %pe%,Passive,On
+Hotkey, %invf%,InviteFriends,On
+Hotkey, %sn%,Button강제종료,On
+Hotkey, %ssn%,Button1인세션,On
+Hotkey, %lf%,Button랜뽑,On
+
 Gui, Font, bold
-Gui, Add, Text, x22 y6 w175 h30 +Center v감지기 cDF0101, GTA5 OFF
-Gui, Add, Checkbox, gC1 vC1, CEO
-Gui, Add, Checkbox, gC2 vC2, MC클럽
-Gui, Add, Checkbox, gC3 vC3, 기본
-Gui, Add, Checkbox, vC4, 습격 세팅 매크로
-Gui, Add, Button,x10 y160 w90 h30 v1인, 1인세션
-GuiControl, disable, 1인
-Gui, Add, Button,x110 y125 w90 h30 v인터넷, 랜뽑
-GuiControl, disable, 인터넷
-Gui, Add, Button,x10 y125 w90 h30 v강종, 강제종료
-GuiControl, disable, 강종
-Gui, Add, Button,x110 y160 w90 h30, 설명서
-Gui, Show, w210 h210, GTA
+Gui, Add, Text, x22 y6 w175 h30 +CEnter vDetected cDF0101, GTA5 OFF
+Gui, Add, Button,x10 y75 w90 h30 vSolo, 1인세션
+GuiControl, disable, Solo
+Gui, Add, Button,x110 y40 w90 h30 vInternet, 랜뽑
+GuiControl, disable, Internet
+Gui, Add, Button,x10 y40 w90 h30 vsd, 강제종료
+GuiControl, disable, sd
+Gui, Add, Button,x110 y75 w90 h30, 크레딧
+Gui, Show, w210 h120, GTA
+
 ProcessExist(Name){
 Process,Exist,%Name%
 return Errorlevel
@@ -45,15 +95,15 @@ DllCall("ntdll.dll\NtResumeProcess", "Int", h), DllCall("CloseHandle", "Int", h)
 CheckLevel:
 Loop {
 If ProcessExist("GTA5.exe") {
-GuiControl,, 감지기,GTA5 ON
+GuiControl,, Detected,GTA5 ON
 Gui, Font, c2EFE2E
-GuiControl, Font, 감지기
-GuiControl, enable, 1인
-GuiControl,, 1인, 1인세션
-GuiControl, enable, 인터넷
-GuiControl,, 인터넷, 랜뽑
-GuiControl, enable, 강종
-GuiControl,, 강종, 강제종료
+GuiControl, Font, Detected
+GuiControl, enable, Solo
+GuiControl,, Solo, 1인세션
+GuiControl, enable, Internet
+GuiControl,, Internet, 랜뽑
+GuiControl, enable, sd
+GuiControl,, sd, 강제종료
 GTAOK := 1
 }
 if GTAOK = 1
@@ -62,25 +112,26 @@ sleep, 3000
 }
 return
 
+
 Button1인세션:
 If not ProcessExist("GTA5.exe")
 {
-GuiControl,, 감지기, GTA5 OFF
+GuiControl,, Detected, GTA5 OFF
 Gui, Font, cDF0101
-GuiControl, Font, 감지기
-GuiControl, disable, 1인
+GuiControl, Font, Detected
+GuiControl, disable, Solo
 goto, CheckLevel
 }
-GuiControl, disable, 1인
+GuiControl, disable, Solo
 ProcSus("GTA5.exe")
 LAN_TIME := 10
 Loop, 10{
-GuiControl,, 1인, %LAN_TIME%초
+GuiControl,, Solo, %LAN_TIME% Seconds
 sleep, 1000
 --LAN_TIME
 }
 ProcRes("GTA5.exe")
-GuiControl,, 1인, 작업완료
+GuiControl,, Solo, Succeed
 sleep, 5000
 goto, CheckLevel
 return
@@ -88,22 +139,22 @@ return
 Button랜뽑:
 If not ProcessExist("GTA5.exe")
 {
-GuiControl,, 감지기, GTA5 OFF
+GuiControl,, Detected, GTA5 OFF
 Gui, Font, cDF0101
-GuiControl, Font, 감지기
-GuiControl, disable, 인터넷
+GuiControl, Font, Detected
+GuiControl, disable, Internet
 goto, CheckLevel
 }
-GuiControl, disable, 인터넷
+GuiControl, disable, Internet
 Run, %ComSpec% /c ipconfig /release
 InternetSus_Time := 20
 Loop, 20{
-GuiControl,, 인터넷, %InternetSus_Time%초
+GuiControl,, Internet, %InternetSus_Time% Seconds
 sleep, 1000
 --InternetSus_Time
 }
 Run, %ComSpec% /c ipconfig /renew
-GuiControl,, 인터넷, 작업완료
+GuiControl,, Internet, Succeed
 sleep, 5000
 goto, CheckLevel
 return
@@ -111,209 +162,142 @@ return
 Button강제종료:
 If not ProcessExist("GTA5.exe")
 {
-GuiControl,, 감지기, GTA5 OFF
+GuiControl,, Detected, GTA5 OFF
 Gui, Font, cDF0101
-GuiControl, Font, 감지기
-GuiControl, disable, 강종
+GuiControl, Font, Detected
+GuiControl, disable, sd
 goto, CheckLevel
 }
 process,close,GTA5.exe
 goto, CheckLevel
 return
 
-C1:
-gui, submit, nohide
-if (C2 = 1)
-{
-guicontrol,,C2,0
-return
-}
-if (C3 = 1)
-{
-guicontrol,,C3,0
-return
-}
-
-
-C2:
-gui, submit, nohide
-if (C1 = 1)
-{
-guicontrol,,C1,0
-return
-}
-if (C3 = 1)
-{
-guicontrol,,C3,0
-return
-}
-
-C3:
-gui, submit, nohide
-if (C1 = 1)
-{
-guicontrol,,C1,0
-return
-}
-if (C2 = 1)
-{
-guicontrol,,C2,0
-return
-}
-
-ctrl & 1::
-{
-Gui, Submit, NoHide
-if (C1 = 1)
-{
-Send,m
-Send {Down}{Down}{Down}{enter}{Down}{Down}{enter}{Down}
-return
-}
-if (C2 = 1)
-{
-Send,m
-Send {Down}{Down}{Down}{enter}{Down}{Down}{enter}{Down}
-return
-}
-if (C3 = 1)
-{
-Send,m
-Send {Down}{Down}{enter}{Down}{Down}{enter}{Down}
-return
-}
-}
+Button크레딧:
+Gui, submit
+Msgbox,
+(
+https://github.com/JU5TDIE/GTAV-Macro
+)
+Gui,Show
 return
 
-ctrl & 2::
+
+
+; Default Macros
+Snack:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/quickgps-kor.png
+If (Errorlevel = 0)
 {
-Gui, Submit, NoHide
-if (C1 = 1)
-{
-Send,m
-Send {Down}{Down}{Down}{enter}{Down}{enter}{Down}{Down}{Down}{Down}{enter}{esc}{esc}{esc}
-return
-}
-if (C2 = 1)
-{
-Send,m
-Send {Down}{Down}{Down}{enter}{Down}{enter}{Down}{Down}{Down}{Down}{enter}{esc}{esc}{esc}
-return
-}
-if (C3 = 1)
-{
-Send,m
-Send {Down}{Down}{enter}{Down}{enter}{Down}{Down}{Down}{Down}{enter}{esc}{esc}{esc}
-return
-}
-}
+Send {Down}{Down}{Enter}{Down}{Down}{Enter}{Down}
+}else
+Send {Down}{Down}{Down}{Enter}{Down}{Down}{Enter}{Down}
 return
 
-ctrl & 3::
+Armor:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/quickgps-kor.png
+If (Errorlevel = 0)
 {
-Gui, Submit, NoHide
-if (C1 = 1)
-{
-Send,m
-Send {Down}{Down}{Down}{enter}{Down}{Down}{Down}{enter}{Down}{Down}{Down}{enter}
-return
-}
-if (C2 = 1)
-{
-Send,m
-Send {Down}{Down}{Down}{enter}{Down}{Down}{Down}{enter}{Down}{Down}{Down}{enter}
-return
-}
-if (C3 = 1)
-{
-Send,m
-Send {Down}{Down}{enter}{Down}{Down}{Down}{enter}{Down}{Down}{Down}{enter}
-return
-}
-}
+Send {Down}{Down}{Enter}{Down}{Enter}{Down}{Down}{Down}{Down}{Enter}{Esc}{Esc}{Esc}
+}else
+Send {Down}{Down}{Down}{Enter}{Down}{Enter}{Down}{Down}{Down}{Down}{Enter}{Esc}{Esc}{Esc}
 return
 
-ctrl & 4::
+Ammo:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/quickgps-kor.png
+If (Errorlevel = 0)
 {
-Gui, Submit, NoHide
-if (C1 = 1)
-{
-Send {Up}{Up}{enter}{Down}{Down}{enter}
-return
-}
-if (C2 = 1)
-{
-Send {Up}{Up}{enter}{Down}{Down}{enter}
-return
-}
-if (C3 = 1)
-{
-Send {Up}{Up}{enter}{Down}{Down}{enter}
-return
-}
-}
+Send {Down}{Down}{Enter}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Enter}
+}else
+Send {Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Enter}
 return
 
-ctrl & 5::
-{
-Gui, Submit, NoHide
-if (C1 = 1)
-{
-Send,m
-Send {enter}{enter}
-Sleep 100
-Send {Right}{Right}{enter}{esc}{esc}{esc}
-return
-}
-if (C2 = 1)
-{
-Send,m
-Send {enter}{Down}{enter}
-Sleep 100
-Send {Right}{Right}{enter}{esc}{esc}{esc}
-return
-}
-}
+NextAmmo:
+Send {Up}{Up}{Enter}{Down}{Down}{Enter}
+
+HideRevealJobs:
+Send, m
+Send {Up}{Up}{Up}{Up}{Up}{Up}{Up}{Up}{Enter}{Enter}{Enter}{Esc}{Esc}{Esc}
 return
 
-F1::
+CustomWeaponLoadout:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/quickgps-kor.png
+If (Errorlevel = 0)
 {
-Gui, Submit, NoHide
-if(C4=1)
+Send {Down}{Down}{Enter}{Down}{Down}{Down}{Down}{Enter}{Esc}{Esc}
+}else
+Send {Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Down}{Enter}{Esc}{Esc}
+return
+
+RequestMOC:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/quickgps-kor.png
+If (Errorlevel = 0)
 {
+Send {Down}{Down}{Down}{Down}{Down}{Enter}{Down}{Enter}{Enter}
+}else
+Send {Down}{Down}{Down}{Down}{Down}{Down}{Enter}{Down}{Enter}{Enter}
+return
+
+RequestAvenger:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/quickgps-kor.png
+If (Errorlevel = 0)
+{
+Send {Down}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Enter}{Enter}
+}else
+Send {Down}{Down}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Enter}{Enter}
+return
+
+RequestTerrorbyte:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/quickgps-kor.png
+If (Errorlevel = 0)
+{
+Send {Down}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Enter}{Enter}
+}else
+Send {Down}{Down}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Enter}{Enter}
+return
+
+RequestKosatka:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/quickgps-kor.png
+If (Errorlevel = 0)
+{
+Send {Down}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Down}{Enter}{Enter}
+}else
+Send {Down}{Down}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Down}{Enter}{Enter}
+return
+
+PinMacroWindow:
+WinSet,AlwaysOnTop,On,ahk_class AutoHotkeyGUI
+
+
+; Heist Setting Macros
+SilentSneaky:
 Send {Enter}{Right}{Enter}{Down}{Enter}{Right}{Enter}{Down}{Enter}{Left}{Enter}
-}else
-return
-}
 return
 
-F2::
-{
-Gui, Submit, NoHide
-if(C4=1)
-{
+TheBigCon:
 Send {Enter}{Right}{Enter}{Down}{Enter}{Right}{Enter}{Left}{Enter}{Right}{Enter}{Down}{Enter}{Left}{Enter}
-}else
-return
-}
 return
 
-F3::
-{
-Gui, Submit, NoHide
-if(C4=1)
-{
+Aggressive:
 Send {Enter}{Left}{Enter}{Down}{Enter}{Right}{Enter}{Down}{Enter}{Left}{Enter}
-}else
-return
-}
 return
 
-F4::
-{
-Gui, Submit, NoHide
-if(C4=1)
-{
+OldFacilityHeist:
 Send {Up}{Enter}
 Sleep 300
 Send {Down}{Down}{Down}
@@ -333,86 +317,118 @@ Sleep 1100
 Send {Down}
 Sleep 100
 Send {Enter}
-}else
-return
-}
 return
 
-ctrl & t::
-{
-Gui, Submit, NoHide
-if(C1=1)
-{
+
+; CEO Macros
+Bullshark:
 Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/ceo-kor.png
+If (Errorlevel = 0)
+{
 Send {Enter}{Down}{Down}{Down}{Down}{Enter}{Down}{Enter}
 }else
-return
-}
+Send, m
 return
 
-ctrl & b::
-{
-Gui, Submit, NoHide
-if(C1=1)
-{
+BribeAuthorities:
 Send, m
-Send {Enter}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Down}{Down}{Enter}
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/ceo-kor.png
+If (Errorlevel = 0)
+{
+Send {Enter}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Down}{Down}
 }else
-return
-}
+Send, m
 return
 
-ctrl & v::
-{
-Gui, Submit, NoHide
-if(C1=1)
-{
+VIP:
 Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/ceo-kor.png
+If (Errorlevel = 0)
+{
 Send {Enter}{Down}{Down}{Enter}
 }else
-return
-}
-return
-
-ctrl & g::
-{
-Gui, Submit, NoHide
-if(C1=1)
-{
 Send, m
-Send {Enter}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Down}{Enter}
+return
+
+GhostOrganization:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/ceo-kor.png
+If (Errorlevel = 0)
+{
+Send {Enter}{Down}{Down}{Down}{Down}{Enter}{Down}{Down}{Down}{Down}
 }else
+Send, m
 return
+
+RequestBuzzard:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/ceo-kor.png
+If (Errorlevel = 0)
+{
+Send {Enter}{Up}{Up}{Enter}{Down}{Down}{Down}{Down}{Enter}
+}else
+Send, m
+return
+
+
+; MC Club Macros
+RequestBike:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/mcclub-kor.png
+If (Errorlevel = 0)
+{
+Send {Enter}{Enter}
+}else
+Send, m
+return
+
+
+; CEO + MC Macros
+Passive:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/quickgps-kor.png
+If (Errorlevel = 0)
+{
+Send {Up}{Enter}{Esc}
+}else
+Send {Enter}{Up}{Enter}
+Sleep 300
+Send, m
+Send {Up}{Enter}{Esc}
+return
+
+InviteFriends:
+Send, m
+Sleep 70
+ImageSearch,vx,vy,25,137,460,190, *50 pics/ceo-kor.png
+If (Errorlevel = 0)
+{
+    Send {Enter}{Enter}{Right}{Right}{Enter}{Esc}{Esc}{Esc}
+    return
 }
-return
+If (Errorlevel = 1)
+{
+    ImageSearch,vx,vy,25,137,460,190, *50 pics/mcclub-kor.png
+    If (Errorlevel = 0)
+    {
+        Send {Enter}{Down}{Enter}{Right}{Right}{Enter}{Esc}{Esc}{Esc}
+        return
+    }
+    If (Errorlevel = 1)
+    {
+        Send, m
+        return
+    }
+}
 
-Button설명서:
-Gui, submit
-Msgbox,
-(
-==============================================
-습격 세팅 매크로
-F1 = 카지노 습격 비밀작전
-F2 = 카지노 습격 대사기극
-F3 = 카지노 습격 공격전술
-F4 = 구,신습격 세팅
-
-일반 매크로
-Ctrl & 1 = 스낵
-Ctrl & 2 = 방탄복
-Ctrl & 3 = 탄약
-Ctrl & 4 = 중화기 다른 탄약 구매 매크로
-Ctrl & 5 = CEO, MC클럽 초대 매크로 
-
-CEO
-Ctrl & t = 불샤크 테스트론
-Ctrl & v = VIP 임무 매크로
-Ctrl & b = 관계자 매수 매크로
-Ctrl & g = 유령연맹 매크로
-==============================================
-)
-Gui,Show
-return
 
 
 GuiClose:
